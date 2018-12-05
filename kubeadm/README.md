@@ -140,9 +140,10 @@ exclude=kube*
 EOF
 ```
 then run 
+```
 #yum update -y
 #yum install kubelet kubeadm kubectl 
-
+```
 ```
 sudo sed -i 's/^SELINUX=enforcing$/SELINUX=disabled/' /etc/selinux/config
 ```

@@ -125,6 +125,23 @@ gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cl
 exclude=kube*
 EOF
 ```
+Or if it display GPG error then disble GPG and repo_gpg key option from kubernetes.repo file.
+
+```
+cat <<EOF > /etc/yum.repos.d/kubernetes.repo
+[kubernetes]
+name=Kubernetes
+baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
+enabled=1
+gpgcheck=0
+repo_gpgcheck=0
+gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+exclude=kube*
+EOF
+```
+then run 
+#yum update -y
+#yum install kubelet kubeadm kubectl 
 
 ```
 sudo sed -i 's/^SELINUX=enforcing$/SELINUX=disabled/' /etc/selinux/config
